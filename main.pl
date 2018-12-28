@@ -28,5 +28,4 @@ for($i = 0; $i < $md5sums_length; $i++){
     }
     print "\n";
   }
-
 }
