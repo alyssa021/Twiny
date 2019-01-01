@@ -1,5 +1,17 @@
 #!/usr/bin/perl
-$md5sums_c = "md5sum *";
+
+if($#ARGV == -1){
+  $dir = "./";
+} else {
+  $dir = @ARGV[0];
+  $char = substr($dir, scalar($dir) - 1, 1);
+
+  if($char ne "/"){
+    $dir = "$dir/";
+  }
+}
+
+$md5sums_c = "md5sum $dir*";
 $md5sums_raw = `$md5sums_c`;
 @md5sums = split('\n', $md5sums_raw);
 $md5sums_length = scalar(@md5sums);
