@@ -11,7 +11,18 @@ if($#ARGV == -1){
   }
 }
 
-$md5sums_c = "md5sum $dir*";
+$files_c = "find $dir -maxdepth 1 -type f";
+$files = `$files_c`;
+@files = split('\n', $files);
+$size = scalar(@files);
+$file_list = join(" ", @files);
+
+if($size == 0){
+  exit 0;
+}
+
+$md5sums_c = "md5sum $file_list";
+
 $md5sums_raw = `$md5sums_c`;
 @md5sums = split('\n', $md5sums_raw);
 $md5sums_length = scalar(@md5sums);
