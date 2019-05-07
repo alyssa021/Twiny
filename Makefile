@@ -1,6 +1,6 @@
 install:
-	@chmod +x main.pl
-	@sudo cp  main.pl /usr/bin/twiny
+	chmod +x twiny
+	sudo cp  twiny /usr/bin/twiny
 	
 remove:
 	@sudo rm /usr/bin/twiny
