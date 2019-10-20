@@ -1,17 +1,19 @@
 #!/usr/bin/perl
 
+# If no arguments ? default to current directory
 if($#ARGV == -1){
   $dir = "./";
 } else {
   $dir = @ARGV[0];
   $char = substr($dir, scalar($dir) - 1, 1);
 
+  # check whether dir path is absolute of relative
   if($char ne "/"){
     $dir = "$dir/";
   }
 }
 
-$files_c = "find $dir -maxdepth 1 -type f";
+$files_c = "find $dir -maxdepth 1 -type f"; # extract file names
 $files = `$files_c`;
 @files = split('\n', $files);
 $size = scalar(@files);
@@ -21,6 +23,7 @@ if($size == 0){
   exit 0;
 }
 
+# compute md5sums of all files
 $md5sums_c = "md5sum $file_list";
 
 $md5sums_raw = `$md5sums_c`;
